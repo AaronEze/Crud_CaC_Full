@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Contenidos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header id="header"></header>
+
+  <main>
+    <div id="app" class="container">
+      <h1>Contenidos</h1>
+      <section v-if="error">
+        <p>Lo sentimos, no podemos mostrar los datos solicitados en este momento.</p>
+      </section>
+      <section v-else>
+        <section v-if="cargando">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="spinner-border text-primary spinner-border-sm"
+              role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </section>
+        <section v-else>
+      <a class="btn btn-success" href="contenido_nuevo.html">Agregar Contenido</a>
+
+      <div class="table-responsive" style="margin-top: 1rem;">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Género</th>
+              <th scope="col">Sinopsis</th>
+              <th scope="col">Valoracion</th>
+              <th scope="col">imagen</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="c in contenidos">
+              <td scope="row">{{c.id}}</td>
+              <td>{{c.titulo}}</td>
+              <td>{{c.tipo}}</td>
+              <td>{{c.genero}}</td>
+              <td>{{c.sinopsis}}</td>
+              <td>{{c.valoracion}} / {{c.valoracion_max}}</td>
+              <td>
+                <img :src="c.imagen" :alt="c.titulo" width="80" height="80">
+              </td>
+
+              <td>
+                <a class="btn btn-primary" :href="'contenido_editar.html?id=' + c.id + '&titulo=' + c.titulo + '&tipo=' + c.tipo + '&genero=' + c.genero + '&sinopsis=' + c.sinopsis + '&imagen=' + c.imagen + '&valoracion=' + c.valoracion + '&valoracion_max=' + c.valoracion_max">Editar</a>
+                <button type="button" class="btn btn-danger" v-on:click="eliminar(c.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        </section>
+
+      </section>
+
+      
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+  
+  <script src="./js/main.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="./js/contenidos.js"></script>
+</body>
+
+</html>
